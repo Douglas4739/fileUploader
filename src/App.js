@@ -7,9 +7,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: 'cats',
-      filterOption: 'Uploaded'
+      searchTerm: '',
+      filterOption: 'All'
     };
+  }
+
+  updateSearchTerm(term) {
+    this.setState({
+      searchTerm: term
+    })
+  }
+
+  updateFilterOption(option) {
+    this.setState({
+      filterOption: option
+    })
   }
 
   render() {
@@ -17,7 +29,9 @@ class App extends Component {
       <div className="App">
         <SearchBar
           searchTerm={this.state.searchTerm}
-          filterOption={this.state.filterOption}/>
+          filterOption={this.state.filterOption}
+          handleUpdate={term=>this.updateSearchTerm(term)}
+          handleFilterChange={option => this.updateFilterOption(option)}/>
         <FilterableList
           files={this.props.files}  
           searchTerm={this.state.searchTerm}
